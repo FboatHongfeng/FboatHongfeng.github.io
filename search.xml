@@ -4,17 +4,17 @@
   
     
     <entry>
-      <title>hello</title>
-      <link href="/undefined/3610a686.html"/>
-      <url>/undefined/3610a686.html</url>
+      <title>C++之const关键字</title>
+      <link href="/undefined/7ba1798e.html"/>
+      <url>/undefined/7ba1798e.html</url>
       
-        <content type="html"><![CDATA[<p>123</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="C-学习-之-const的使用"><a href="#C-学习-之-const的使用" class="headerlink" title="C++学习 之 const的使用"></a>C++学习 之 const的使用</h1><p>1.const用于声明一个常量，这个量在代码中应该不能被更改。就像下面这样：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">float</span> c = <span class="number">3.14</span>;</span><br><span class="line"><span class="comment">//You can not do this:</span></span><br><span class="line">c = <span class="number">10</span>;<span class="comment">//error!</span></span><br></pre></td></tr></table></figure><p>&emsp;&emsp;像上述这样的常量声明看上去这个常量非常的稳定且“坚固”，但实际上，我们可以做一件非常有趣的事情像下面这样：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> c = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span>* a = <span class="keyword">new</span> <span class="type">int</span>;</span><br><span class="line">a = (<span class="type">int</span>*)&amp;c;</span><br><span class="line">a = <span class="number">1</span>;</span><br><span class="line">std::cout&lt;&lt; b &lt;&lt;std::endl;</span><br><span class="line"><span class="comment">//results is 1</span></span><br></pre></td></tr></table></figure><p>&emsp;&emsp;非常有趣的事情发生了，指针a居然修改了常量c的值！我们通过引用c的值再获取c的地址的方式成功修改了c的值，引用类型强制转换成指针类型，这让我们成功的通过赋值让指向了c，这表明了在C++中的常量并不是完全无法更改的，他只是一种代码规则而不是程序规则。<br>2.const在C++的类中也有一些有趣的用法。<br>&emsp;&emsp;同样的，在类中我们一样可以声明成员常量。但是不同于C的是，C++的成员函数可以赋予const的属性，如下：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">entity</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="type">int</span> m_X;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Get_X</span><span class="params">()</span> <span class="type">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> m_X;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">Set_X</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        m_X = <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;这样的函数类型让我们的函数禁用了修改成员变量的功能，成员变量对于这样的函数是只读的，同时对于常量的对象引用，只有这样的函数是可调用的(因为常量对象是不允许修改成员变量的，相应的就不允许调用普通的成员函数)，如下：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Get_Value</span><span class="params">(<span class="type">const</span> entity e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">Get_X</span>();<span class="comment">//这样的函数是允许访问的</span></span><br><span class="line"><span class="built_in">Set_X</span>();<span class="comment">//这样的则不可以</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>&emsp;&emsp;当然，如果想通过const函数去操作变量，可以适应mutable操作符(或许是为了测试又或者别的原因，谁知道呢？)</p>]]></content>
       
       
       
         <tags>
             
-            <tag> tags </tag>
+            <tag> C++ </tag>
             
         </tags>
       
@@ -23,7 +23,7 @@
     
     
     <entry>
-      <title>test</title>
+      <title>C++之成员初始化列表</title>
       <link href="/undefined/d87f7e0c.html"/>
       <url>/undefined/d87f7e0c.html</url>
       
@@ -33,7 +33,7 @@
       
         <tags>
             
-            <tag> tags </tag>
+            <tag> C++ </tag>
             
         </tags>
       
